@@ -4,59 +4,192 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Granja Gallinera - Tienda de Gallinas</title>
+    <!-- Vinculo con el archivo CSS separado -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Fuente moderna desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Encabezado de la tienda -->
     <header class="encabezado-granja">
-        <h1>Tienda de Gallinas 🐔</h1>
+        <div class="logo">
+            <span class="icono-logo">🐔</span>
+            <h1>La Granja Feliz</h1>
+        </div>
         <nav class="menu-navegacion">
-            <button class="btn-nav">Inicio</button>
-            <button class="btn-nav">Catálogo</button>
-            <button class="btn-nav">Contacto</button>
+            <button class="btn-nav activo" onclick="mostrarSeccion('catalogo')">Inicio</button>
+            <button class="btn-nav" onclick="mostrarSeccion('mis-gallinas')">
+                Mis Gallinas (<span id="contador-menu">0</span>)
+            </button>
         </nav>
+        <div class="carrito-resumen">
+            🛒 <span id="contador-carrito">0</span>
+        </div>
     </header>
 
+    <!-- Contenido principal -->
     <main class="contenedor-principal">
-        <section class="banner-bienvenida">
-            <h2>¡Adopta o compra tu gallina ideal!</h2>
-            <p>Selecciona la gallina que más te guste y añádela a tu granja hoy mismo.</p>
-        </section>
+        
+        <!-- SECCIÓN 1: CATÁLOGO DE TIENDA -->
+        <div id="seccion-catalogo">
+            <section class="banner-bienvenida">
+                <h2>¡Adopta o compra tu gallina ideal!</h2>
+                <p>Gallinas felices, criadas en libre pastoreo. ¡Elige el color que más te guste!</p>
+            </section>
 
-        <section class="catalogo-gallinas">
-            <!-- Gallina Blanca -->
-            <article class="tarjeta-gallina">
-                <span class="icono-gallina">🐔</span>
-                <h3>Gallina Blanca</h3>
-                <p>Ponedora de huevos de gran tamaño. Muy dócil y tranquila.</p>
-                <button class="btn-comprar" onclick="comprarGallina('blanca')">Comprar Gallina Blanca</button>
-            </article>
+            <section class="catalogo-gallinas">
+                <!-- Gallina Blanca -->
+                <article class="tarjeta-gallina">
+                    <div class="imagen-contenedor blanca">
+                        <span class="emoji-gallina">🐓</span>
+                        <span class="etiqueta-destacado">Ponedora</span>
+                    </div>
+                    <div class="contenido-tarjeta">
+                        <h3>Gallina Blanca</h3>
+                        <p class="descripcion">Excelente ponedora de huevos grandes. De carácter dócil, limpia y muy tranquila.</p>
+                        <div class="precio">$15.000 CLP</div>
+                        <button class="btn-comprar" onclick="comprarGallina('Blanca', '🐓')">
+                            <span>Comprar Gallina Blanca</span> 🛒
+                        </button>
+                    </div>
+                </article>
 
-            <!-- Gallina Café -->
-            <article class="tarjeta-gallina">
-                <span class="icono-gallina">🟤🐔</span>
-                <h3>Gallina Café</h3>
-                <p>Raza rústica, excelente para libre pastoreo y muy resistente.</p>
-                <button class="btn-comprar" onclick="comprarGallina('café')">Comprar Gallina Café</button>
-            </article>
+                <!-- Gallina Café -->
+                <article class="tarjeta-gallina">
+                    <div class="imagen-contenedor cafe">
+                        <span class="emoji-gallina">🟤🐔</span>
+                        <span class="etiqueta-destacado">Rústica</span>
+                    </div>
+                    <div class="contenido-tarjeta">
+                        <h3>Gallina Café</h3>
+                        <p class="descripcion">Raza fuerte y resistente, ideal para libre pastoreo en jardín o parcela.</p>
+                        <div class="precio">$18.000 CLP</div>
+                        <button class="btn-comprar" onclick="comprarGallina('Café', '🟤🐔')">
+                            <span>Comprar Gallina Café</span> 🛒
+                        </button>
+                    </div>
+                </article>
 
-            <!-- Gallina Negra -->
-            <article class="tarjeta-gallina">
-                <span class="icono-gallina">⬛🐔</span>
-                <h3>Gallina Negra</h3>
-                <p>Plumaje brillante y temperamento amigable. Muy vistosa.</p>
-                <button class="btn-comprar" onclick="comprarGallina('negra')">Comprar Gallina Negra</button>
-            </article>
-        </section>
+                <!-- Gallina Negra -->
+                <article class="tarjeta-gallina">
+                    <div class="imagen-contenedor negra">
+                        <span class="emoji-gallina">⬛🐔</span>
+                        <span class="etiqueta-destacado">Especial</span>
+                    </div>
+                    <div class="contenido-tarjeta">
+                        <h3>Gallina Negra</h3>
+                        <p class="descripcion">Plumaje brillante con reflejos verdosos. Muy vistosa, amigable y sociable.</p>
+                        <div class="precio">$20.000 CLP</div>
+                        <button class="btn-comprar" onclick="comprarGallina('Negra', '⬛🐔')">
+                            <span>Comprar Gallina Negra</span> 🛒
+                        </button>
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <!-- SECCIÓN 2: LISTA DE MIS GALLINAS COMPRADAS -->
+        <div id="seccion-mis-gallinas" class="hidden">
+            <section class="banner-bienvenida">
+                <h2>Mis Gallinas Compradas 🌾</h2>
+                <p>Aquí tienes el inventario de todas las gallinas que has adquirido.</p>
+            </section>
+
+            <section class="contenedor-inventario">
+                <div id="mensaje-vacio" class="mensaje-vacio">
+                    <p>Aún no has comprado ninguna gallina. ¡Ve al catálogo para conseguir la primera!</p>
+                </div>
+                <ul id="lista-gallinas" class="lista-gallinas">
+                    <!-- Las gallinas compradas se agregarán aquí dinámicamente -->
+                </ul>
+            </section>
+        </div>
+
     </main>
 
+    <!-- Ventana emergente (Modal) al comprar -->
+    <div id="modal-compra" class="modal-overlay hidden">
+        <div class="modal-contenido">
+            <span class="modal-icono">🎉🐔</span>
+            <h2>¡Felicidades!</h2>
+            <p id="mensaje-modal">Compraste una gallina...</p>
+            <button class="btn-cerrar" onclick="cerrarModal()">¡Entendido!</button>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
     <footer class="pie-pagina">
-        <p>&copy; 2026 Tienda de Gallinas - Todos los derechos reservados.</p>
+        <p>&copy; 2026 La Granja Feliz - Venta y Cuidado Aviar</p>
     </footer>
 
+    <!-- Lógica de interacción JS -->
     <script>
-        function comprarGallina(color) {
-            alert('¡Felicidades! Compraste una gallina  ' + color + ' 🐔🎉');
+        let misGallinas = [];
+
+        function comprarGallina(color, icono) {
+            // Guardar en la lista
+            misGallinas.push({ color: color, icono: icono, id: misGallinas.length + 1 });
+
+            // Actualizar contadores
+            document.getElementById('contador-carrito').textContent = misGallinas.length;
+            document.getElementById('contador-menu').textContent = misGallinas.length;
+
+            // Actualizar vista de la lista
+            actualizarListaGallinas();
+
+            // Mostrar modal de felicitación
+            const modal = document.getElementById('modal-compra');
+            const mensaje = document.getElementById('mensaje-modal');
+            mensaje.textContent = `¡Felicidades! Compraste una gallina ${color}.`;
+            modal.classList.remove('hidden');
+        }
+
+        function actualizarListaGallinas() {
+            const lista = document.getElementById('lista-gallinas');
+            const mensajeVacio = document.getElementById('mensaje-vacio');
+
+            if (misGallinas.length > 0) {
+                mensajeVacio.style.display = 'none';
+            }
+
+            // Limpiar e insertar elementos actualizados
+            lista.innerHTML = '';
+            misGallinas.forEach((gallina) => {
+                const li = document.createElement('li');
+                li.className = 'item-gallina';
+                li.innerHTML = `
+                    <span class="icono-item">${gallina.icono}</span>
+                    <div class="info-item">
+                        <strong>Gallina ${gallina.color}</strong>
+                        <span>ID de Registro: #00${gallina.id}</span>
+                    </div>
+                    <span class="estado-item">En el gallinero 🏡</span>
+                `;
+                lista.appendChild(li);
+            });
+        }
+
+        function mostrarSeccion(seccion) {
+            const cat = document.getElementById('seccion-catalogo');
+            const misG = document.getElementById('seccion-mis-gallinas');
+            const btns = document.querySelectorAll('.btn-nav');
+
+            if (seccion === 'catalogo') {
+                cat.classList.remove('hidden');
+                misG.classList.add('hidden');
+                btns[0].classList.add('activo');
+                btns[1].classList.remove('activo');
+            } else {
+                cat.classList.add('hidden');
+                misG.classList.remove('hidden');
+                btns[0].classList.remove('activo');
+                btns[1].classList.add('activo');
+            }
+        }
+
+        function cerrarModal() {
+            document.getElementById('modal-compra').classList.add('hidden');
         }
     </script>
 
