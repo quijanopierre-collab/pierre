@@ -3,28 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Proyecto Web</title>
+    <title>Granja Gallinera - Tienda de Gallinas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <header class="encabezado">
-        <h1>Bienvenido a mi sitio web</h1>
-        <nav class="navegacion">
+    <header class="encabezado-granja">
+        <h1>Tienda de Gallinas 🐔</h1>
+        <nav class="menu-navegacion">
             <button class="btn-nav">Inicio</button>
+            <button class="btn-nav">Catálogo</button>
             <button class="btn-nav">Contacto</button>
         </nav>
     </header>
 
-    <main class="contenido-principal">
-        <section class="tarjeta">
-            <h2>Sobre el proyecto</h2>
-            <p>Este es un proyecto de desarrollo web evaluado con HTML5 y CSS3.</p>
+    <main class="contenedor-principal">
+        <section class="banner-bienvenida">
+            <h2>¡Adopta o compra tu gallina ideal!</h2>
+            <p>Selecciona la gallina que más te guste y añádela a tu granja hoy mismo.</p>
+        </section>
+
+        <section class="catalogo-gallinas">
+            <!-- Gallina Blanca -->
+            <article class="tarjeta-gallina">
+                <span class="icono-gallina">🐔</span>
+                <h3>Gallina Blanca</h3>
+                <p>Ponedora de huevos de gran tamaño. Muy dócil y tranquila.</p>
+                <button class="btn-comprar" onclick="comprarGallina('blanca')">Comprar Gallina Blanca</button>
+            </article>
+
+            <!-- Gallina Café -->
+            <article class="tarjeta-gallina">
+                <span class="icono-gallina">🟤🐔</span>
+                <h3>Gallina Café</h3>
+                <p>Raza rústica, excelente para libre pastoreo y muy resistente.</p>
+                <button class="btn-comprar" onclick="comprarGallina('café')">Comprar Gallina Café</button>
+            </article>
+
+            <!-- Gallina Negra -->
+            <article class="tarjeta-gallina">
+                <span class="icono-gallina">⬛🐔</span>
+                <h3>Gallina Negra</h3>
+                <p>Plumaje brillante y temperamento amigable. Muy vistosa.</p>
+                <button class="btn-comprar" onclick="comprarGallina('negra')">Comprar Gallina Negra</button>
+            </article>
         </section>
     </main>
 
     <footer class="pie-pagina">
-        <p>&copy; 2026 - Todos los derechos reservados.</p>
+        <p>&copy; 2026 Tienda de Gallinas - Todos los derechos reservados.</p>
     </footer>
 
+    <script>
+        function comprarGallina(color) {
+            alert('¡Felicidades! Compraste una gallina ' + color + ' 🐔🎉');
+        }
+    </script>
+
 </body>
+</html>
